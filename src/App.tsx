@@ -13,21 +13,33 @@ import axios from "axios";
 function App() {
 
     const [characterArray, setCharacterArray] = useState<Character[]>([])
-    const page:number = 1
+    const [lastPage, setLastPage] = useState<number>(0)
+    const [currPage, setCurrPage] = useState<number>(1)
 
     useEffect(() => {
-        axios.get(`https://rickandmortyapi.com/api/character/?page=${page}`)
+        axios.get(`https://rickandmortyapi.com/api/character/?page=${currPage}`)
             .then(response => response.data)
-            .then(body => setCharacterArray(body.results))
+            .then(body => {
+                setCharacterArray(body.results)
+                setLastPage(body.info.pages)
+            })
             .catch(console.error)
-    }, [])
+    }, [currPage])
+
+
+
+
 
     return (
         <BrowserRouter>
             <Title/>
             <Routes>
                 <Route path={"/"} element={<LandingPage/>}/>
-                <Route path={"/gallery"} element={<GalleryPage characters={characterArray}/>} />
+                <Route path={"/gallery"} element={<GalleryPage
+                    characters={characterArray}
+                    currPage={currPage}
+                    lastPage={lastPage}
+                    setCurrPage={setCurrPage}/>} />
                 <Route path={"/imprint"} element={<Imprint/>}/>
                 <Route path={"gallery/character/:id"} element={<CharacterDetails characters={characterArray} />}/>
             </Routes>
