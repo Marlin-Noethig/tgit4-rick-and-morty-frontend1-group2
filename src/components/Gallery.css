@@ -11,11 +11,17 @@
 .searchbar{
     background-color: cadetblue;
     padding: 10px;
+    display: flex;
+    justify-content: center;
 }
 #input-field{
-    width: 60%;
+    width: 30%;
     margin: 0px 10px 0px 10px;
     border-radius: 5px;
+}
+
+.searchbar button{
+    margin: 0px 10px 0px 10px;
 }
 
 

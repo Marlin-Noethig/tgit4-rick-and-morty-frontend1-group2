@@ -1,0 +1,25 @@
+#landing-container{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 12%;
+}
+
+#landing-container h1{
+    color: rgb(42, 215, 215);
+    font-size: 50px;
+}
+
+#gallery-link{
+    font-size: 50px;
+    font-weight: bold;
+    color: hotpink;
+    text-decoration: none;
+    padding: 50px;
+}
+
+#gallery-link:hover{
+    text-shadow: 0px 0px 200px #d90e3e;;
+}
