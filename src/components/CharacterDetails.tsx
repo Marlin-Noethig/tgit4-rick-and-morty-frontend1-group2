@@ -1,38 +1,43 @@
-import {useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {Character} from "../model/Character";
-import ErrorPage from "./ErrorPage";
+import "./CharacterDetails.css";
 
-export default function CharacterDetails(){
+
+
+type CharacterDetailsProps = {
+    characters: Character[]
+}
+
+export default function CharacterDetails({characters}:CharacterDetailsProps){
+    const navigate = useNavigate()
     const params = useParams()
     const id = params.id
 
-    const [character, setCharacter] = useState<Character>(Object)
-
-    const fetchSingleCharacter = () => {
-        return fetch(`https://rickandmortyapi.com/api/character/${id}`)
-            .then(response => {
-                if (response.ok) {
-                    return response.json()
-                }
-                throw new Error("Network Error")
-            })
-            .catch(console.error)
+    if (id === undefined){
+        navigate("/")
+        return (<></>)
     }
 
-    useEffect(() => {
-        fetchSingleCharacter()
-            .then(body => setCharacter(body))
-    }, [])
+    const character = characters.find(character => character.id === parseInt(id))
 
+    if (character === undefined){
+        return(<>Character not found!</>)
+    }
 
     return(
-        <div>
-            <h1>Character {id}</h1>
-            <p>{character.name}</p>
-            <h3> Status: {character.status}</h3>
-            <p className={"gender-tag"}>Gender: {character.gender}</p>
-            <h4> Origin: {character.origin.name}</h4>
+        <div className={"character-details"}>
+            <h1>{character.name}</h1>
+            <div className={"details-wrapper"}>
+            <img src={character.image} alt={character.name}/>
+            <div className={"character-credentials"}>
+                <p>Gender: {character.gender}</p>
+                <p>Status: {character.status}</p>
+                <p>Species: {character.species}</p>
+                <p>Origin: {character.origin.name}</p>
+                <p>Current location: {character.location.name}</p>
+                <Link to={"/gallery"} className={"back-button"}>Back</Link>
+            </div>
+            </div>
         </div>
 
     )

@@ -19,9 +19,11 @@
     font-style: italic;
 }
 
-.character-card
+.character-card h2{
+    margin: 20px 0px 10px 0px;
+}
 
 .character-card img{
-
+    margin: 10px 0px 20px 0px;
 }
 

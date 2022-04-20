@@ -2,8 +2,13 @@ import React, {useEffect, useState} from "react";
 import {Character} from "../model/Character";
 import"./GalleryPage.css"
 import Gallery from "../components/Gallery";
+import CharacterDetails from "../components/CharacterDetails";
 
-export default function GalleryPage (){
+type GalleryPageProps = {
+    characters: Character[]
+}
+
+export default function GalleryPage ({characters}: GalleryPageProps){
     const [currPage, setCurrPage] = useState<number>(1)
 
     const [characterArray, setCharacterArray] = useState<Character[]>([])
@@ -11,16 +16,8 @@ export default function GalleryPage (){
 
     const increaseCount = () => setCurrPage(currPage + 1)
     const decreaseCount = () => setCurrPage(currPage - 1)
-    const fetchCharacters = () => {
-        return fetch(`https://rickandmortyapi.com/api/character/?page=${currPage}`)
-            .then(response => {
-                if (response.ok) {
-                    return response.json()
-                }
-                throw new Error("Network Error")
-            })
-            .catch(console.error)
-    }
+
+
 
     {/*
     const fetchAllCharacters = ():Character[] =>{
@@ -38,21 +35,6 @@ export default function GalleryPage (){
     const allCharactersToCharacterArray = () => setCharacterArray(fetchAllCharacters())
         */}
 
-    useEffect(() => {
-        fetchCharacters()
-            .then(body => {
-                setCharacterArray(body.results)
-            })
-    }, [currPage])
-
-    useEffect(() => {
-        fetchCharacters()
-            .then(body => {
-                setLastPage(body.info.pages)
-            })
-    }, [])
-
-
 
 
     return (
@@ -65,7 +47,7 @@ export default function GalleryPage (){
                 <p>Current Page: {currPage}</p>
                 <button id={"show-all-button"} >SHOW ALL</button>
             </div>
-            <Gallery characters={characterArray}/>
+            <Gallery characters={characters}/>
         </div>
     );
 }
