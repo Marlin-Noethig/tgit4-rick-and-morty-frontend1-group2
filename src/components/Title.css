@@ -21,8 +21,9 @@ nav{
     color: hotpink;
     text-decoration: none;
     padding: 5px;
-    border: outset 2px;
+    border: solid 2px;
     margin: 0px 5px 0px 5px;
+    border-radius: 5px;
 }
 
 .nav-link:hover{
