@@ -11,10 +11,17 @@
 .character-card:hover{
     box-shadow: 0px 0px 100px #f254ff;
     opacity: 0.9;
+    cursor: pointer;
 }
 
 .gender-tag{
     font-size: 20px;
     font-style: italic;
+}
+
+.character-card
+
+.character-card img{
+
 }
 

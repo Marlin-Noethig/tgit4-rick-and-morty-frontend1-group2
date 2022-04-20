@@ -15,32 +15,3 @@ body{
 }
 
 
-.number-buttons{
-  background-color: darkcyan;
-  margin: 0px;
-  padding: 20px 0px 20px 0px;
-}
-
-.number-buttons p{
-  font-weight: bold;
-  color: #7507e7;
-}
-
-.number-buttons button{
-  margin: 0px 10px 0px 10px;
-  background-color: #61dafb;
-  border: 0;
-  padding: 10px;
-  border-radius: 5px;
-}
-
-.number-buttons button:hover{
-  background-color: hotpink;
-  cursor: pointer;
-}
-
-#show-all-button:hover{
-  background-color:red;
-  font-weight: bold;
-  font-size: 20px;
-}
