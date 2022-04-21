@@ -27,10 +27,10 @@ export default function GalleryPage ({characters,currPage,lastPage, setCurrPage}
                 .then(body => {
                     body.results.forEach((character:Character) => {
                         allCharacters.push(character)
-                        console.log(i)
                     })
                 })
                 .catch(console.error)
+
         }
         console.log(allCharacters)
         setAllCharacters(allCharacters)

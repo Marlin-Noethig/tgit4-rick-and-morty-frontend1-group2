@@ -1,24 +1,18 @@
-import {Link, useNavigate, useParams} from "react-router-dom";
-import {Character} from "../model/Character";
+import {Link, useParams} from "react-router-dom";
 import "./CharacterDetails.css";
+import useCharacter from "../hooks/useCharacter";
 
 
 
-type CharacterDetailsProps = {
-    characters: Character[]
-}
 
-export default function CharacterDetails({characters}:CharacterDetailsProps){
-    const navigate = useNavigate()
+
+export default function CharacterDetails(){
+
     const params = useParams()
     const id = params.id
 
-    if (id === undefined){
-        navigate("/")
-        return (<></>)
-    }
 
-    const character = characters.find(character => character.id === parseInt(id))
+    const character = useCharacter(id)
 
     if (character === undefined){
         return(<>Character not found!</>)
