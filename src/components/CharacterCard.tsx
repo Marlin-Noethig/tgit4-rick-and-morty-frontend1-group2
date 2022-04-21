@@ -10,7 +10,6 @@ export default function CharacterCard({character}: CharacterCardProps) {
     const navigate = useNavigate()
 
     const onCardClick = () =>{
-        console.log("click")
         navigate(`character/${character.id}`)
     }
 

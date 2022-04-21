@@ -26,10 +26,6 @@ function App() {
             .catch(console.error)
     }, [currPage])
 
-
-
-
-
     return (
         <BrowserRouter>
             <Title/>
